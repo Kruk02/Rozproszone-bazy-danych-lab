@@ -8,8 +8,12 @@ USING
   (CONNECT_DATA=(SERVICE_NAME=baza11b))  
 )';
 
+---------------------------------------------------------------------------------------------------------
+
 -- ZADANIE 4:
 SELECT * FROM kursanci@dblinkFilia;
+
+---------------------------------------------------------------------------------------------------------
 
 -- Zadanie 5:
 CREATE OR REPLACE SYNONYM kursanciSiedziba FOR kursanci;
@@ -20,6 +24,8 @@ CREATE OR REPLACE SYNONYM kursanciFilia FOR kursanci@dblinkFilia;
 CREATE OR REPLACE SYNONYM wykladowcyFilia FOR wykladowcy@dblinkFilia;
 CREATE OR REPLACE SYNONYM rodzajeFilia FOR rodzaje@dblinkFilia;
 CREATE OR REPLACE SYNONYM kursyFilia FOR kursy@dblinkFilia;
+
+---------------------------------------------------------------------------------------------------------
 
 -- Zadanie 6:
 
@@ -36,6 +42,8 @@ FROM wykladowcySiedziba
 UNION
 SELECT imie, nazwisko
 FROM wykladowcyFilia;
+
+---------------------------------------------------------------------------------------------------------
 
 -- Zadanie 7: 
 CREATE OR REPLACE VIEW kursyAll AS
@@ -67,6 +75,8 @@ LEFT JOIN umowy u
   ON k.kurs_id = u.kurs_id
 GROUP BY k.kurs_id, r.nazwa, w.imie, w.nazwisko;
 
+---------------------------------------------------------------------------------------------------------
+
 -- zadanie 8:
 SELECT SUM(przychod) AS laczny_przychod
 FROM (
@@ -95,6 +105,8 @@ LEFT JOIN umowy u
 GROUP BY k.kurs_id, r.nazwa, r.cena
 );
 
+---------------------------------------------------------------------------------------------------------
+
 -- Zadanie 9:
 SELECT SUM(koszt) AS laczne_koszty
 FROM (
@@ -120,6 +132,8 @@ JOIN rodzajeFilia r
 JOIN wykladowcyFilia w
   ON k.wykladowca_id = w.wykladowca_id
 );
+
+---------------------------------------------------------------------------------------------------------
 
 -- Zadanie 10:
 SELECT k.kurs_id,
@@ -151,6 +165,8 @@ JOIN wykladowcyFilia w
 LEFT JOIN umowy u
   ON k.kurs_id = u.kurs_id
 GROUP BY k.kurs_id, r.nazwa, r.cena, r.godz, w.stawka;
+
+---------------------------------------------------------------------------------------------------------
 
 -- Zadanie 11:
 SELECT SUM(zysk) AS laczny_zysk
